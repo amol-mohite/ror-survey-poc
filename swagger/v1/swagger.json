@@ -1,0 +1,570 @@
+{
+  "swagger": "2.0",
+  "openApi": "3.0.0",
+  "basePath": "/api/v1",
+  "info": {
+    "title": "Cornerstone"
+  },
+
+  "securityDefinitions": {
+    "verify_auth_token": {
+      "type": "apiKey",
+      "name": "AUTHORIZATION",
+      "in": "header"
+    }
+  },
+  "paths": {
+    "/sessions": {
+      "post": {
+        "tags": [
+          "User Authentication Module"
+        ],
+        "summary": "Login - For Existing User",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "formData",
+            "name": "email",
+            "description": "Email of User",
+            "required": true,
+            "type": "string",
+            "default": "a@a.com"
+          },
+          {
+            "in": "formData",
+            "name": "password",
+            "description": "Password of User",
+            "required": true,
+            "type": "string",
+            "format": "password",
+            "default": "aaaa"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/users": {
+      "post": {
+        "tags": [
+          "User Authentication Module"
+        ],
+        "summary": "Signup - For New User",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "name",
+            "description": "Full Name of User",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "mobile_no",
+            "description": "Mobile Number of User",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "email",
+            "description": "Email of User",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "password",
+            "description": "Password of User",
+            "required": true,
+            "type": "string",
+            "format": "password"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/users/my_profile": {
+      "get": {
+        "tags":[
+          "User Authentication Module"
+        ],
+        "summary": "User Details API",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+        ],
+        "responses": {
+          "200": {
+            "description": "ok"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [{
+          "verify_auth_token": [
+            "write:printer",
+            "read:printer"
+          ]
+        }]
+      }
+    },
+    "/surveys": {
+      "get": {
+        "tags": [
+          "Survey APIs"
+        ],
+        "summary": "Get All Surveys",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [{
+          "verify_auth_token": [
+            "write:printer",
+            "read:printer"
+          ]
+        }]
+      },
+      "post": {
+        "tags": [
+          "Survey APIs"
+        ],
+        "summary": "Create a Survey",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "formData",
+            "name": "title",
+            "description": "Title of Survey",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "description",
+            "description": "description of Survey",
+            "required": false,
+            "type": "string",
+            "format": "string"
+          },
+          {
+            "in": "formData",
+            "name": "starting_date",
+            "description": "Expected Start Date of survey",
+            "required": true,
+            "type": "string",
+            "format": "date",
+            "example": "01-01-2017"
+          },
+          {
+            "in": "formData",
+            "name": "closing_date",
+            "description": "Expected Close Date of survey",
+            "required": true,
+            "type": "string",
+            "format": "date",
+            "example": "01-01-2017"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [{
+          "verify_auth_token": [
+            "write:printer",
+            "read:printer"
+          ]
+        }]
+      }
+    },
+    "/surveys/{id}": {
+      "get": {
+        "tags": [
+          "Survey APIs"
+        ],
+        "summary": "Get Survey Details",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+         "parameters": [
+          {
+          "in": "path",
+          "name": "id",
+          "description": "ID of Survey",
+          "required": true,
+          "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [{
+          "verify_auth_token": [
+            "write:printer",
+            "read:printer"
+          ]
+        }]
+      },
+      "put": {
+        "tags": [
+          "Survey APIs"
+        ],
+        "summary": "Update Survey Details",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "formData",
+            "name": "title",
+            "description": "Title of Survey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "description",
+            "description": "description of Survey",
+            "required": false,
+            "type": "string",
+            "format": "string"
+          },
+          {
+            "in": "formData",
+            "name": "starting_date",
+            "description": "Expected Start Date of survey",
+            "required": false,
+            "type": "string",
+            "format": "date",
+            "example": "01-01-2017"
+          },
+          {
+            "in": "formData",
+            "name": "closing_date",
+            "description": "Expected Close Date of survey",
+            "required": false,
+            "type": "string",
+            "format": "date",
+            "example": "01-01-2017"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [{
+          "verify_auth_token": [
+            "write:printer",
+            "read:printer"
+          ]
+        }]
+      }
+    },
+    "/surveys/{id}/make_active": {
+      "post": {
+        "tags": [
+          "Survey APIs"
+        ],
+        "summary": "Make Survey Active",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+          "in": "path",
+          "name": "id",
+          "description": "ID of Survey",
+          "required": true,
+          "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+         "security": [{
+          "verify_auth_token": [
+            "write:printer",
+            "read:printer"
+          ]
+        }]
+      }
+    },
+    "/surveys/{id}/make_inactive": {
+      "post": {
+        "tags": [
+          "Survey APIs"
+        ],
+        "summary": "Make Survey In-Active",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+          "in": "path",
+          "name": "id",
+          "description": "ID of Survey",
+          "required": true,
+          "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+         "security": [{
+          "verify_auth_token": [
+            "write:printer",
+            "read:printer"
+          ]
+        }]
+      }
+    },
+    "/surveys/{id}/questions": {
+      "get": {
+        "tags": [
+          "Questions APIs"
+        ],
+        "summary": "Get All Questions from Survey",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+         "parameters": [
+          {
+          "in": "path",
+          "name": "id",
+          "description": "ID of Survey",
+          "required": true,
+          "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [{
+          "verify_auth_token": [
+            "write:printer",
+            "read:printer"
+          ]
+        }]
+      },
+      "post": {
+        "tags": [
+          "Questions APIs"
+        ],
+        "summary": "Create Questions inside Survey",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+          "in": "path",
+          "name": "id",
+          "description": "ID of Survey",
+          "required": true,
+          "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "text",
+            "description": "Text for the Question",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "question_type",
+            "description": "Type of the Question",
+            "required": true,
+            "enum": ["text", "boolean", "multiple-choice", "multi-select"],
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "options",
+            "description": "Options for the Questions",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [{
+          "verify_auth_token": [
+            "write:printer",
+            "read:printer"
+          ]
+        }]
+      }
+    },
+    "/surveys/{id}/responses": {
+      "post": {
+        "tags": [
+          "Answers APIs"
+        ],
+        "summary": "Submit Answers for a Survey",
+        "description": "API to submit answers for all questions in a survey.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "ID of Survey",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Array of answers with question IDs and answers",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "responses": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "question_id": {
+                        "type": "string",
+                        "description": "ID of the question being answered"
+                      },
+                      "answer": {
+                        "type": "string",
+                        "description": "Answer provided for the question"
+                      }
+                    },
+                    "required": ["question_id", "answer"]
+                  }
+                }
+              },
+              "required": ["responses"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [{
+          "verify_auth_token": [
+            "write:printer",
+            "read:printer"
+          ]
+        }]
+      },
+      "get": {
+        "tags": [
+          "Answers APIs"
+        ],
+        "summary": "Get saved Answers for a Survey",
+        "description": "API to get saevd answers for all questions in a survey.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "ID of Survey",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [{
+          "verify_auth_token": [
+            "write:printer",
+            "read:printer"
+          ]
+        }]
+      }
+    }
+  }
+}
