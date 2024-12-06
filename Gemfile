@@ -36,9 +36,9 @@ gem "bcrypt", "~> 3.1.7"
 gem 'rswag'
 
 gem 'aws-sdk-dynamodb' # For DynamoDB
-gem 'elasticsearch'    # For Elasticsearch
-gem 'elasticsearch-rails' # Elasticsearch Rails integration
-gem 'elasticsearch-model' 
+# gem 'elasticsearch'    # For Elasticsearch
+# gem 'elasticsearch-rails' # Elasticsearch Rails integration
+# gem 'elasticsearch-model' 
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
