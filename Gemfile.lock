@@ -286,6 +286,7 @@ DEPENDENCIES
   debug
   jwt
   mysql2 (~> 0.5)
+  net-protocol (>= 0.1.2)
   puma (>= 5.0)
   rack-cors
   rails (~> 7.2.2)
