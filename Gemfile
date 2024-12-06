@@ -35,7 +35,6 @@ gem "bcrypt", "~> 3.1.7"
 # Swagger
 gem 'rswag'
 
-gem 'net-protocol', '>= 0.1.2'
 gem 'aws-sdk-dynamodb' # For DynamoDB
 # gem 'elasticsearch'    # For Elasticsearch
 # gem 'elasticsearch-rails' # Elasticsearch Rails integration

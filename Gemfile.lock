@@ -137,7 +137,7 @@ GEM
     net-imap (0.5.1)
       date
       net-protocol
-    net-pop (0.1.2)
+    net-pop (0.1.0)
     net-protocol (0.2.2)
       timeout
     net-smtp (0.5.0)
@@ -286,7 +286,6 @@ DEPENDENCIES
   debug
   jwt
   mysql2 (~> 0.5)
-  net-protocol (>= 0.1.2)
   puma (>= 5.0)
   rack-cors
   rails (~> 7.2.2)
