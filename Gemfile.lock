@@ -117,7 +117,7 @@ GEM
     json (2.8.2)
     json-schema (5.0.1)
       addressable (~> 2.8)
-    jwt (2.9.3)
+    jwt (2.10.0)
       base64
     language_server-protocol (3.17.0.3)
     logger (1.6.1)
